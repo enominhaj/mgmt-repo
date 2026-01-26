@@ -21,6 +21,11 @@ jenkins:
           modernSCM:
             scm:
               gitSource:
-                remote: "https://github.com/enominhaj/shared-libs.git"
+                remote: "https://github.com/enominhaj/mgmt-repo.git"
                 traits:
                 - "gitBranchDiscovery"
+  tool:
+    git:
+      installations:
+      - home: "git"
+        name: "Default"
