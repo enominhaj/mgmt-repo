@@ -36,3 +36,37 @@ docker compose -f ./jenkins/docker-compose.yml up
 - Set the GitHub payload URL to be your Jenkins’ IP address with /github-webhook/ appended to it
 - Set the Jenkins API token as the GitHub webhook secret token
 - Save the GitHub Webhook and then Jenkins builds will occur when a commit is pushed to the repo
+
+sample pipeline
+```groovy
+@Library('custom-libs') _
+
+pipeline {
+    agent {
+        label 'k8s-agent' //  K8s pod template label
+    }
+
+    stages {
+        stage('log agent pod hostname') {
+            steps {
+                sh 'hostname'
+            }
+        }
+
+        stage('Checkout Source') {
+            steps {
+                git url: 'https://github.com/enominhaj/test-app.git', branch: 'main'
+            }
+        }
+
+        stage('Run Go Tests') {
+            steps {
+                script {
+                    // Call your shared lib function
+                    go_test('app') // pass the directory if needed
+                }
+            }
+        }
+    }
+}
+```

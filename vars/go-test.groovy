@@ -1,4 +1,4 @@
-def go_test(String go_dir = "app") {
+def call(String go_dir = "app") {
     echo "Running Go tests in directory: ${go_dir}"
 
     dir(go_dir) {
