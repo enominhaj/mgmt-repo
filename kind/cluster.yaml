@@ -4,6 +4,13 @@ nodes:
 - role: control-plane
   labels:
     tier: controller
+  # extraPortMappings:
+  #   - containerPort: 6443   # Kind API server inside container
+  #     hostPort: 6443        # Exposed on host
+
+networking:
+  apiServerAddress: "192.168.0.105"
+  apiServerPort: 6443
 # - role: worker
 #   labels:
 #     tier: backend

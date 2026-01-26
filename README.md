@@ -8,7 +8,31 @@ docker compose -f ./jenkins/docker-compose.yml up
 # Local Cluster Management
 1. Create the cluster
 ```bash
- kind create cluster --config ./kind/cluster.yaml --name my-cluster
+ kind create cluster --config ./kind/cluster.yaml --name k8s-cluster
  ```
 
- 
+2. base64 encode the kubeconfig file
+
+```Powershell
+#Powershell
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("C:\Users\ashrafur.minhaj\.kube\config"))
+```
+
+* clearnup
+```bash
+ kind delete cluster
+ kind delete clusters --all
+```
+
+ # tunnel out local jenkins to public url
+ - ssh -R 80:localhost:8080 serveo.net
+
+ ## Setup jenkins for github webhook trigger
+
+- Create a Jenkins build job that uses a GitHub URL
+- Click the GitHub hook trigger for GITScm polling checkbox on the build job
+- Create and copy a Jenkins API token for the Jenkins user who will run the build job
+- Create a trigger in your GitHub repository’s settings page
+- Set the GitHub payload URL to be your Jenkins’ IP address with /github-webhook/ appended to it
+- Set the Jenkins API token as the GitHub webhook secret token
+- Save the GitHub Webhook and then Jenkins builds will occur when a commit is pushed to the repo
