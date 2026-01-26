@@ -33,6 +33,16 @@ jenkins:
                 resourceRequestMemory: "256Mi"
                 alwaysPullImage: true
                 privileged: false
+          - name: "go-agent"              # Java Network Launch Protocol
+            label: "go-agent"
+            containers:
+              - name: "golang"
+                image: "golang:1.25.6"
+                ttyEnabled: true
+                resourceRequestCpu: "500m"
+                resourceRequestMemory: "512Mi"
+                alwaysPullImage: true
+                privileged: false
 
 unclassified:
   globalLibraries:
