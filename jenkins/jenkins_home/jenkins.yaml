@@ -1,0 +1,26 @@
+jenkins:
+  systemMessage: "Managed with Configuration as Code by enosis (a) ashraf-minhaj"
+  numExecutors: 2   # run two jobs in parallel
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  disableRememberMe: false
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: minhaj
+          name: minhaj
+          password: minhaj123
+  security:
+    globalLibraries:
+      libraries:
+      - defaultVersion: "main"
+        name: "custom-libs"
+        retriever:
+          modernSCM:
+            scm:
+              gitSource:
+                remote: "https://github.com/enominhaj/shared-libs.git"
+                traits:
+                - "gitBranchDiscovery"
