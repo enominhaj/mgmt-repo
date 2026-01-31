@@ -2,13 +2,19 @@
 
 # deploy jenkins
 ```bash
-docker compose -f ./jenkins/docker-compose.yml up 
+# docker compose -f ./jenkins/docker-compose.yml up 
+
+# deploy jenkins with local mailserver
+docker compose up
 ```
 
 # Local Cluster Management
 1. Create the cluster
 ```bash
  kind create cluster --config ./kind/cluster.yaml --name k8s-cluster
+
+ # set the created cluster as context if not already
+ kind export kubeconfig --name k8s-cluster
  ```
 
 2. base64 encode the kubeconfig file
@@ -70,3 +76,14 @@ pipeline {
     }
 }
 ```
+
+# mail server
+```bash
+# test
+wget -qO- https://raw.githubusercontent.com/sedkodes/mailslurper/main/send-mail-test.py | python
+
+# or,
+curl -s https://raw.githubusercontent.com/sedkodes/mailslurper/main/send-mail-test.py | python
+```
+
+jenkin plugins: mailer, email extension plugin

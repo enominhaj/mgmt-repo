@@ -9,7 +9,7 @@ nodes:
   #     hostPort: 6443        # Exposed on host
 
 networking:
-  apiServerAddress: "192.168.0.105"
+  apiServerAddress: "192.168.0.101"
   apiServerPort: 6443
 # - role: worker
 #   labels:
