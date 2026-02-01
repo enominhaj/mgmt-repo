@@ -15,10 +15,8 @@ services:
       - "50000:50000"   # JNLP agent port
 
   mail_server:
-    image: marcopas/docker-mailslurper  
+    image: mailhog/mailhog:latest
     container_name: mailserver
-    restart: unless-stopped
     ports:
-      - "2500:2500"  # SMTP listener for apps to send emails
-      - "9000:8080"  # Inbox
-      - "8085:8085"  # optional / service port.. but why
+      - "1025:1025"
+      - "8025:8025"

@@ -78,12 +78,45 @@ pipeline {
 ```
 
 # mail server
-```bash
-# test
-wget -qO- https://raw.githubusercontent.com/sedkodes/mailslurper/main/send-mail-test.py | python
+[mailhog](https://github.com/mailhog/MailHog)
 
-# or,
-curl -s https://raw.githubusercontent.com/sedkodes/mailslurper/main/send-mail-test.py | python
+Sample pipeline with error -
+```groovy
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Running build..."
+                sh 'exit 1'   // force failure
+            }
+        }
+    }
+
+    post {
+        failure {
+            mail(
+                to: 'test@example.com',
+                subject: "❌ Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+Job        : ${env.JOB_NAME}
+Build No   : ${env.BUILD_NUMBER}
+Status     : FAILED
+Node       : ${env.NODE_NAME}
+
+Failure reason:
+The shell step returned a non-zero exit code.
+
+Build URL:
+${env.BUILD_URL}
+
+Check the console log for full details.
+"""
+            )
+        }
+    }
+}
 ```
 
 jenkin plugins: mailer, email extension plugin
