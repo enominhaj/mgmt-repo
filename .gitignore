@@ -1,5 +1,7 @@
-jenkins/
-jenkins/jenkins_home
+!jenkins/
+jenkins/*
+!jenkins/jenkins_home/
+jenkins/jenkins_home/*
 !jenkins/jenkins_home/jenkins.yaml
 
 .env
