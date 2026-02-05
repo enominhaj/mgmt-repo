@@ -120,3 +120,6 @@ Check the console log for full details.
 ```
 
 jenkin plugins: mailer, email extension plugin
+
+# build agent
+docker run --rm -it enominhaj/build-agent:v1 

@@ -1,3 +1,6 @@
-# !jenkins
+jenkins/
 jenkins/jenkins_home
-!jenkins.yaml
+!jenkins/jenkins_home/jenkins.yaml
+
+.env
+.gitattributes

@@ -5,7 +5,9 @@ services:
     image: jenkins/jenkins:lts
     container_name: jenkins
     # mem_limit: 1G 
-    # cpus: "1"     
+    # cpus: "1"   
+    env_file:
+      - .env  
     volumes:
       - ./jenkins/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
@@ -13,7 +15,6 @@ services:
     ports:
       - "8080:8080"
       - "50000:50000"   # JNLP agent port
-
   mail_server:
     image: mailhog/mailhog:latest
     container_name: mailserver
