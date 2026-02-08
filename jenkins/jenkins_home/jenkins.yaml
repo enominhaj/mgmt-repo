@@ -29,7 +29,7 @@ jenkins:
             label: "build-agent"
             containers:
               - name: "build-agent"
-                image: "enominhaj/build-agent:v3"
+                image: "enominhaj/build-agent:v2"
                 ttyEnabled: true
                 resourceRequestCpu: "300m"
                 resourceRequestMemory: "256Mi"
