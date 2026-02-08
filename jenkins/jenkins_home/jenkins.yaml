@@ -12,6 +12,9 @@ jenkins:
         - id: minhaj
           name: minhaj
           password: minhaj123
+          properties:
+            - timezone:
+                timeZoneName: "Asia/Dhaka"
   clouds:
     - kubernetes:
         name: "kind-cluster"
@@ -22,17 +25,17 @@ jenkins:
         jenkinsUrl: "http://192.168.0.101:8080/"   # URL Jenkins uses for agents
         containerCapStr: "10"                # max pods
         templates:
-          - name: "build-agent"              # Java Network Launch Protocol
+          - name: "build-agent"              
             label: "build-agent"
             containers:
               - name: "build-agent"
-                image: "enominhaj/build-agent:v1"
+                image: "enominhaj/build-agent:v3"
                 ttyEnabled: true
                 resourceRequestCpu: "300m"
                 resourceRequestMemory: "256Mi"
                 alwaysPullImage: true
-                privileged: false
-          # - name: "go-agent"              # Java Network Launch Protocol
+                privileged: true
+          # - name: "go-agent"              
           #   label: "go-agent"
           #   containers:
           #     - name: "golang"
